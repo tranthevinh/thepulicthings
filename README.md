@@ -1,6 +1,6 @@
 # thepulicthings <br>
 <br>
-<h1>Welcome To My Pulic Things Folder<h1> <br>
+<h1>Welcome To My Pulic Things Folder</h1> <br>
 <b>This Is Something U Should Be Read Before Download Or Do Anything :<b> <br>
 <font color:red>1 : - I'll Not Be Responsible For Any File Or Folder I Was Upload When You Download That </font><br>
 <font color:red>2 : - Anything Here Is Free For Coppy, No Question, No Ask, No Reward</font> <br>
