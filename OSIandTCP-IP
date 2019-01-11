@@ -1,0 +1,46 @@
+OSI : Open System Interconnection : 7 Layers
+(1)	- Physical  : CAP, MJ45, Modem, ... Basiclly it's interconnection controller in physical 
+(2)	- Data Link : Controller the Physical Controller which non-pysical
+(3)	- Network   : Routes data packets, select best path to deliver data, Provides logical address and 
+path selection ( 192.x.x.x,... ) 
+(4)	- Transport : End-to-End Conections, virtual connect, base on (1) (2) (3) is done these jobs 
+(5)	- Session : Interhost Commuication : Estab, Manages and terminates sessions
+(6)	- Presentation :Data Representation ( Translation Communication Connect )  
+(7)	- Application : Network Presess to Applications 
+(7) <-> (1) <-> (7) 
+
+OSI Working : 
+(*) : User Data or Data
+(*) -> (7) : L7 HDR - User Data
+(7) -> (6) : L6 L7 HDR - User Data
+(6) -> (5) :  
+(5) -> (4) : 
+(4) -> (3) : 
+(3) -> (2) : 
+(2) -> (1) : L2 -> L7 HDR - User Data  FCS
+(1)        : Bits 
+(1) -> (*) : User Data
+
+|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+|Peer-to-Peer Communication :                   |
+|Sender-----------------------------Receiver    |
+|Application------------------------Application |
+|Presentation-----------------------Presentation|
+|Session----------------------------Session     |
+|Transport--------Segments----------Transport   |
+|Network-----------Packets-----------Network    |
+|DataLink----------Frames------------Datalink   |
+|Physical			   Physical     |
+|    "_____________Bits__________________"      |
+|_______________________________________________|
+
+
+TCP/IP Stack : 4 Layer 
+(1)	Application 	: Application + Presentation + Session
+(2)	Transport   	: Transport
+(3)	Internet    	: Network
+(4) 	Network Access 	: Data Link + Physical
+
+Most Popular : TCP/IP Stack based on OSI
+
+
