@@ -1,0 +1,95 @@
+TCP / IP : Connection-oriented (and) Connectionless
+(1)	App
+(2)	Pre
+(3)	Ses
+(4)	UCP and TCP : (~3.9) + Transport
+(5)	IP : Network
+(6)	Ethernet/Internet : Data Link + Physical
+------------------------------------------------+
+- Session multiplexing				|
+- Segmentation					|
+- Flow control 		: If required (CO)	|
+- Connection-oriented 	: If required (CO)	|
+- Reliability 		: If required (CO)	|
+________________________________________________+
+
+---------------------------------------------------------------+
+Type      :	CO 				 and CL        |
+Protocol  :	TCP				 and UDP       |	
+Seqencing : 	Yes				 and No        |
+User      : 	Email + File Sharing + Download	 and Streaming |
+---------------------------------------------------------------+
+
+--------------------------------------------------------------------------------------------------------+
+UDP : User Datagram Protocol : 	4x16-bit (based) Data							|
+- Operates at transport layer of OSI and TCP/IP models							|
+- Provides applications with access to the network layer without the overhead of reliability mechanisms	|
+- Is a connectionless protocol										|
+- Provides limited error checking									|
+- Provides best-effort delivery										|
+- Has no data-recovery features										|
+- 16-bit Type : Source Port + Destination Port + UDP Length + UDP checksum				|
+--------------------------------------------------------------------------------------------------------+ 
+
+--------------------------------------------------------------------------------------------------------+
+TCP :  													|
+- Transport layer of the TCP/IP Stack									|
+- Access to the network layer for applications								|
+- Connection-oriented protocol										|
+- Full-duplex mode operation										|
+- Error checking											|
+- Sequencing of data packets										|
+- Acknowledgement of receipt										|
+- Data~Recovery Features										|
+--------------------------------------------------------------------------------------------------------+
+
+--------------------------------------------------------------------------------------------------------+
+TCP : 													|	
+(1) 16-Bit source port  + 16-Bit destination port 							|
+(2) 32-Bit sequence number										|
+(3) 32-Bit acknowledgment number									|
+(4) 4-bit header length + resv + { [ns][cwr][ece][urg][ack][psh][rsl][syn][fin] } + 16-Bit window size	|
+(5) 16-Bit TCP checksum + 16-Bit urgent pointer								|
+(6) Options												|
+(7) Data												|
+(1)->(6)->Based->(Data)											|
+--------------------------------------------------------------------------------------------------------+
+
+--------------------------------------------------------------------------------------------------------+
+Application : 												|
+- File Transfer : FTP | TFTP | Network File System							|
+- Email : Simple Mail Transfer Protocol									|
+- Remote login : Telnet | rlogin									|
+- Network management : Simple Network Management Protocol						|
+- Name management : Domain Name System									|
+--------------------------------------------------------------------------------------------------------+
+----------------------------------------------------------------------------------------------------------+
+Mapping Layer 3 to Layer : IP = IP Header + [ TCP or UDP + [] ]						  |
+- Protocol : name for know TCP or UDP 									  |
+- TCP : 21 = FPT  | 23 = Telnet | 80 = HTTP | 53 = DNS |						  |
+- UDP : 69 = TFPT | 161 = SNMP  |           | 53 = DNS |						  |
+- These Number is Port   										  |
+- Host to Host by Internet based on TCP/IP :              						  |
+  + Step 1 : Host A send SYN (     SEQ = 100             | CTL = SYN )     -> Host B   ( SYN received )   |
+  + Step 2 : Host B send SYN.ACK ( SEQ = 300 | ACK = 101 | CTL = SYN.ACK ) -> Host A   ( SYN received )   |
+  + Step 3 : Host A Established (  SEQ = 101 | ACK = 301 | CTL = ACK )     -> Host B  			  |
+----------------------------------------------------------------------------------------------------------+
+
+-----------------------------------------------------------------------------------------------------------+
+Flow Control :                                                         					   |
+- If Sender transmit to the Received : 									   |
+  + If Received is normal Sender keep send								   |
+  + If Received Buffer is Full : Then it will send back the signal tell Sender stop because he not ready   |
+				 Then it will process Segments						   |
+				 When Received Buffer is Ready then it will send back the signal to Sender |
+				 Sender now know and <Resume> the Transmission			     	   |
+-----------------------------------------------------------------------------------------------------------+
+-----------------------------------------------------------------------------------------------------------+
+TCP Acknowledgment : If Windows Size = 1  								   |
+Sender -> (1) -> Received : ACK 1 : (1done) -> Sender : ACK 2                                              |
+		     If Windows Size = 3                                                                   |
+Sender -> (1 2 3 ) -> Received : ACK 1 2 3 : (123done) -> Sender : 4                                       |
+	  (4 5 6 ) 		     4 5 6                         7                                       |  
+If Segment 3 is lost, just allow windows = 2 then Received will send back the signel to resize and resume  |
+send Segment 3                                                                                             |
+-----------------------------------------------------------------------------------------------------------+ 
